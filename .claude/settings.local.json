@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-Date -UFormat \"%y%m%d\")",
+      "Bash(git init:*)",
+      "Bash(git branch:*)",
+      "Bash(mkdir:*)",
+      "Skill(ai-multimodal)",
+      "Bash(python:*)",
+      "Bash(if [ -f \"d:/WORK/atvvending/docs/wireframes/index.html\" ])",
+      "Bash(then echo \"File exists\")",
+      "Bash(else echo \"File does not exist\")",
+      "Bash(fi)",
+      "Bash(ls -la \"d:\\WORK\\atvvending\\images\"\" 2>/dev/null || dir \"d:WORKatvvendingimages\"\")",
+      "SlashCommand(/fix:hard Thay thế tên chữ của các đối tác bằng hình ảnh logo trong phần Partners section của wireframe.\n\n## Yêu cầu:\n1. Tạo thư mục `images/partners/` để lưu logo đối tác\n2. Tìm và tải logo cho tất cả 39 đối tác (sử dụng logo từ internet hoặc tạo placeholder SVG)\n3. Cập nhật HTML trong file `d:\\WORK\\atvvending\\docs\\wireframes\\index.html` để hiển thị logo thay vì text\n\n## Danh sách 39 đối tác cần logo:\n**Hàng 1 (20 đối tác):**\nLuxshare ICT, Foxconn, Shunyun, M.C Electronic, UIL Việt Nam, Samsung Electronic, SDV, SEMV, Tenma Việt Nam, Inoac Việt Nam, Toyota Việt Nam, Tập Đoàn Đóng Tàu Đại Dương, BV Đa Khoa Phúc Yên, BV Hữu Nghị Việt Đức, BV Ung Bướu Hà Nội, Bảo Tàng Lịch Sử VN, Keangnam Hà Nội, PVI Cầu Giấy, TT Hội Nghị Quốc Gia, Khóa Huy Hoàng\n\n**Hàng 2 (19 đối tác):**\nTerumo Việt Nam, Vietnam Post, Mitsubishi Việt Nam, Matsuo Việt Nam, Fukang Hồng Hải, Kyocera Hải Phòng, Yazaki Việt Nam, Shin-Etsu Việt Nam, Pegatron Hải Phòng, KCN Việt Nam, Nakashima, TKR Manufacturing, Sakura Hongming, Kyoei Manufacturing, ĐH Thương Mại HN, HV Chính Sách & PT, ĐH Sư Phạm 2, Gạch Catalan, Gạch TTC\n\n## Giải pháp:\n- Ưu tiên 1: Tìm logo chính thức từ website công ty (nếu có)\n- Ưu tiên 2: Sử dụng logo từ các nguồn như Brandfetch, Clearbit, hoặc Wikipedia\n- Ưu tiên 3: Tạo placeholder SVG với tên công ty (cho các đối tác không tìm được logo)\n\n## Cập nhật HTML:\n- Thay `<span>Tên công ty</span>` bằng `<img src=\"../../images/partners/ten-cong-ty.png\" alt=\"Tên công ty\">`\n- Đảm bảo logo có kích thước phù hợp (khoảng 120px width)\n- Giữ nguyên hiệu ứng hover và marquee animation\n\n## Lưu ý:\n- File wireframe: `d:\\WORK\\atvvending\\docs\\wireframes\\index.html`\n- Thư mục images: `d:\\WORK\\atvvending\\images\\`\n- Relative path từ wireframe đến images: `../../images/partners/`)",
+      "SlashCommand(/fix:hard:*)",
+      "Bash(find:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

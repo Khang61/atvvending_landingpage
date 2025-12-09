@@ -1,0 +1,2916 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AutoViet - Giải pháp máy bán hàng tự động toàn diện. Bán, cho thuê, sửa chữa và bảo trì máy bán hàng tự động.">
+    <title>AutoViet - Giải Pháp Máy Bán Hàng Tự Động Toàn Diện</title>
+
+    <!-- Google Fonts - Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* ========================================
+           CSS RESET & VARIABLES
+        ======================================== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* AutoViet Brand Colors - Dark Theme */
+            --primary-orange: #FF6B00;
+            --primary-orange-hover: #FF8533;
+            --primary-orange-light: rgba(255, 107, 0, 0.15);
+
+            /* Dark Theme Colors */
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-tertiary: #1a1a1a;
+            --bg-card: #1a1a1a;
+            --bg-card-hover: #222222;
+
+            /* Text Colors */
+            --text-primary: #FFFFFF;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --text-muted: rgba(255, 255, 255, 0.5);
+
+            /* Border Colors */
+            --border-color: rgba(255, 255, 255, 0.1);
+            --border-color-hover: rgba(255, 107, 0, 0.5);
+
+            /* Typography */
+            --font-primary: 'Montserrat', sans-serif;
+
+            /* Spacing */
+            --section-padding: 100px 0;
+            --container-max: 1200px;
+            --container-padding: 0 24px;
+
+            /* Transitions */
+            --transition-base: 0.3s ease;
+
+            /* Border Radius */
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition-base);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* ========================================
+           CONTAINER
+        ======================================== */
+        .container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: var(--container-padding);
+        }
+
+        /* ========================================
+           HEADER - Dark Theme
+        ======================================== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            transition: var(--transition-base);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--primary-orange);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            font-weight: 800;
+            font-size: 18px;
+        }
+
+        .logo span {
+            color: var(--primary-orange);
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .nav-link {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            position: relative;
+            padding: 8px 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-orange);
+            transition: var(--transition-base);
+        }
+
+        .nav-link:hover {
+            color: var(--primary-orange);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .header-cta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 28px;
+            font-family: var(--font-primary);
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: var(--transition-base);
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--primary-orange);
+            color: var(--text-primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-orange-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(255, 107, 0, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-orange);
+            border: 2px solid var(--primary-orange);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-orange);
+            color: var(--text-primary);
+        }
+
+        .btn-white {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+        }
+
+        .btn-white:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-menu-btn span {
+            width: 24px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: var(--transition-base);
+        }
+
+        /* ========================================
+           HERO SECTION - Dark Theme
+        ======================================== */
+        .hero {
+            padding-top: 80px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -25%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(ellipse, rgba(255, 107, 0, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary-orange-light);
+            color: var(--primary-orange);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--primary-orange);
+            border-radius: 50%;
+        }
+
+        .hero-title {
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+        }
+
+        .hero-title span {
+            color: var(--primary-orange);
+        }
+
+        .hero-description {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 500px;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .hero-stat {
+            text-align: left;
+        }
+
+        .hero-stat-number {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--primary-orange);
+        }
+
+        .hero-stat-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .hero-image {
+            position: relative;
+            z-index: 1;
+            margin-right: -60px;
+            margin-top: -20px;
+            margin-bottom: -20px;
+        }
+
+        .hero-image img {
+            width: 110%;
+            height: auto;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 107, 0, 0.3);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .hero-image img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 107, 0, 0.3);
+        }
+
+        .hero-image-decoration {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--primary-orange);
+            opacity: 0.1;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .hero-image-decoration:nth-child(1) {
+            top: -50px;
+            right: -50px;
+        }
+
+        .hero-image-decoration:nth-child(2) {
+            bottom: -30px;
+            left: -30px;
+            width: 200px;
+            height: 200px;
+        }
+
+        /* ========================================
+           BUSINESS TYPES SECTION - Dark Theme
+        ======================================== */
+        .business-types {
+            padding: var(--section-padding);
+            background: var(--bg-secondary);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary-orange);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 44px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .business-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .business-card {
+            position: relative;
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 40px 28px;
+            text-align: center;
+            transition: var(--transition-base);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .business-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary-orange);
+            transform: scaleX(0);
+            transition: var(--transition-base);
+        }
+
+        .business-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-color-hover);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(255, 107, 0, 0.15);
+        }
+
+        .business-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .business-icon {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 24px;
+            background: var(--bg-tertiary);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: var(--primary-orange);
+            border: 1px solid var(--border-color);
+            transition: var(--transition-base);
+        }
+
+        .business-card:hover .business-icon {
+            background: var(--primary-orange);
+            color: var(--text-primary);
+            border-color: var(--primary-orange);
+        }
+
+        .business-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .business-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* ========================================
+           STATISTICS BAR - Orange Background
+        ======================================== */
+        .stats-bar {
+            background: var(--primary-orange);
+            padding: 60px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item {
+            color: var(--text-primary);
+        }
+
+        .stat-number {
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        /* ========================================
+           SOLUTIONS/SERVICES SECTION - Dark Theme
+        ======================================== */
+        .solutions {
+            padding: var(--section-padding);
+            background: var(--bg-tertiary);
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .solution-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: var(--transition-base);
+            border: 1px solid var(--border-color);
+        }
+
+        .solution-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(255, 107, 0, 0.2);
+            border-color: var(--primary-orange);
+        }
+
+        .solution-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .solution-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-base);
+        }
+
+        .solution-card:hover .solution-image img {
+            transform: scale(1.05);
+        }
+
+        .solution-content {
+            padding: 28px;
+        }
+
+        .solution-content h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .solution-content p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .solution-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary-orange);
+        }
+
+        .solution-link:hover {
+            gap: 12px;
+        }
+
+        /* ========================================
+           PRODUCTS SECTION - Dark Theme
+        ======================================== */
+        .products {
+            padding: var(--section-padding);
+            background: var(--bg-secondary);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .product-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: var(--transition-base);
+            border: 1px solid var(--border-color);
+        }
+
+        .product-card:hover {
+            border-color: var(--primary-orange);
+            background: var(--bg-card-hover);
+            box-shadow: 0 16px 32px rgba(255, 107, 0, 0.2);
+        }
+
+        .product-image {
+            position: relative;
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: var(--bg-tertiary);
+        }
+
+        .product-image img {
+            max-height: 100%;
+            width: auto;
+            object-fit: contain;
+            transition: var(--transition-base);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.08);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--primary-orange);
+            color: var(--text-primary);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .product-content {
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .product-content h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .product-content p {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* Product Zoom Overlay */
+        .product-zoom-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            cursor: pointer;
+        }
+
+        .product-zoom-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .product-zoom-content {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            text-align: center;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+            border: 2px solid var(--primary-orange);
+            box-shadow: 0 40px 100px rgba(255, 107, 0, 0.3);
+        }
+
+        .product-zoom-overlay.active .product-zoom-content {
+            transform: scale(1);
+        }
+
+        .product-zoom-content img {
+            max-height: 350px;
+            width: auto;
+            margin-bottom: 24px;
+        }
+
+        .product-zoom-content h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .product-zoom-content p {
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+
+        .product-zoom-hint {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+        }
+
+        /* Project Zoom Overlay */
+        .project-zoom-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-zoom-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .project-zoom-content {
+            max-width: 90vw;
+            max-height: 85vh;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .project-zoom-content img {
+            max-width: 100%;
+            max-height: 85vh;
+            border-radius: 16px;
+            box-shadow: 0 40px 100px rgba(255, 107, 0, 0.3);
+        }
+
+        .project-zoom-overlay.active .project-zoom-content {
+            transform: scale(1);
+        }
+
+        .project-zoom-hint {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+        }
+
+        /* Load More Button */
+        .load-more {
+            text-align: center;
+            margin-top: 48px;
+        }
+
+        /* ========================================
+           PROJECTS/CASE STUDIES SECTION - Dark Theme
+        ======================================== */
+        .projects {
+            padding: var(--section-padding);
+            background: var(--bg-primary);
+        }
+
+        .projects .section-title {
+            color: var(--text-primary);
+        }
+
+        .projects .section-subtitle {
+            color: var(--text-secondary);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .project-card {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            border: 1px solid var(--border-color);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-base);
+        }
+
+        .project-card:hover img {
+            transform: scale(1.08);
+        }
+
+        /* Projects Pagination */
+        .projects-pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .pagination-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            border: 2px solid var(--primary-orange);
+            color: var(--primary-orange);
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pagination-btn:hover:not(:disabled) {
+            background: var(--primary-orange);
+            color: #000;
+        }
+
+        .pagination-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .pagination-info {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .pagination-info span {
+            color: var(--primary-orange);
+        }
+
+        .project-card {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ========================================
+           PARTNERS SECTION - Dark Theme Auto Scroll Marquee
+        ======================================== */
+        .partners {
+            padding: var(--section-padding);
+            background: var(--bg-secondary);
+            overflow: hidden;
+        }
+
+        /* Partner Logos Grid - Static Display */
+        .partner-logos-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 48px;
+            margin-top: 48px;
+            flex-wrap: wrap;
+        }
+
+        .partner-logo-item {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 24px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-base);
+            border: 1px solid var(--border-color);
+            min-width: 200px;
+            height: 100px;
+        }
+
+        .partner-logo-item img {
+            max-width: 160px;
+            max-height: 60px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .partner-logo-item:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--primary-orange);
+            box-shadow: 0 12px 32px rgba(255, 107, 0, 0.25);
+            transform: translateY(-6px);
+        }
+
+        @media (max-width: 768px) {
+            .partner-logos-grid {
+                gap: 24px;
+            }
+
+            .partner-logo-item {
+                min-width: 150px;
+                height: 80px;
+                padding: 16px 24px;
+            }
+
+            .partner-logo-item img {
+                max-width: 120px;
+                max-height: 50px;
+            }
+        }
+
+        .marquee-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            margin-top: 40px;
+        }
+
+        .marquee-container::before,
+        .marquee-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 150px;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .marquee-container::before {
+            left: 0;
+            background: linear-gradient(to right, var(--bg-secondary) 0%, transparent 100%);
+        }
+
+        .marquee-container::after {
+            right: 0;
+            background: linear-gradient(to left, var(--bg-secondary) 0%, transparent 100%);
+        }
+
+        .marquee-track {
+            display: flex;
+            animation: marquee 40s linear infinite;
+            width: max-content;
+        }
+
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+
+        .marquee-container:hover .marquee-track {
+            animation-play-state: paused;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .marquee-content {
+            display: flex;
+            gap: 24px;
+            padding-right: 24px;
+        }
+
+        .logo-item {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-base);
+            border: none;
+            min-width: 200px;
+            height: 90px;
+            flex-shrink: 0;
+            backdrop-filter: blur(4px);
+        }
+
+        .logo-item img {
+            max-width: 160px;
+            max-height: 70px;
+            min-height: 50px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .logo-item:hover {
+            background: #ffffff;
+            box-shadow: 0 8px 24px rgba(255, 107, 0, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .logo-item span {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-align: center;
+            line-height: 1.3;
+            white-space: nowrap;
+        }
+
+        .logo-item:hover span {
+            color: var(--text-primary);
+        }
+
+        /* Second row - reverse direction */
+        .marquee-track.reverse {
+            animation: marquee-reverse 45s linear infinite;
+        }
+
+        @keyframes marquee-reverse {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+
+        .marquee-row {
+            margin-bottom: 24px;
+        }
+
+        .marquee-row:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ========================================
+           SUPPLIERS SECTION - Gradient Cards Style
+        ======================================== */
+        .suppliers {
+            padding: var(--section-padding);
+            background: var(--bg-tertiary);
+            overflow: hidden;
+        }
+
+        .suppliers-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 48px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .supplier-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+            border: 1px solid rgba(255, 107, 0, 0.3);
+            border-radius: 8px;
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .supplier-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 107, 0, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .supplier-card:hover::before {
+            left: 100%;
+        }
+
+        .supplier-card:hover {
+            border-color: var(--primary-orange);
+            background: linear-gradient(135deg, #2d2d2d 0%, #3d3d3d 50%, #2d2d2d 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 0, 0.2);
+        }
+
+        .supplier-card span {
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff;
+            text-align: center;
+            white-space: nowrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .supplier-card:hover span {
+            color: var(--primary-orange);
+        }
+
+        @media (max-width: 768px) {
+            .suppliers-grid {
+                gap: 12px;
+            }
+            .supplier-card {
+                padding: 12px 18px;
+            }
+            .supplier-card span {
+                font-size: 13px;
+            }
+        }
+
+        /* ========================================
+           ABOUT SECTION - Dark Theme
+        ======================================== */
+        .about {
+            padding: var(--section-padding);
+            background: var(--bg-secondary);
+        }
+
+        .about-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .about-image-badge {
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            background: var(--primary-orange);
+            color: var(--text-primary);
+            padding: 28px;
+            border-radius: var(--radius-lg);
+            text-align: center;
+        }
+
+        .about-image-badge .number {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .about-image-badge .text {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .about-content h2 {
+            font-size: 40px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .about-content h2 span {
+            color: var(--primary-orange);
+        }
+
+        .about-content p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 32px 0;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .about-feature-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--primary-orange-light);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-orange);
+            flex-shrink: 0;
+        }
+
+        .about-feature span {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* ========================================
+           CONTACT SECTION - Dark Theme
+        ======================================== */
+        .contact {
+            padding: var(--section-padding);
+            background: var(--bg-tertiary);
+        }
+
+        .contact-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-info h2 {
+            font-size: 40px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .contact-info p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .contact-item-icon {
+            width: 52px;
+            height: 52px;
+            background: var(--primary-orange);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            flex-shrink: 0;
+        }
+
+        .contact-item-content h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .contact-item-content p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .contact-form {
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-form h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 14px 18px;
+            font-family: var(--font-primary);
+            font-size: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            transition: var(--transition-base);
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-orange);
+            box-shadow: 0 0 0 4px rgba(255, 107, 0, 0.15);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-group select {
+            cursor: pointer;
+        }
+
+        .form-group select option {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .contact-form .btn {
+            width: 100%;
+            padding: 16px;
+            font-size: 16px;
+        }
+
+        /* ========================================
+           FOOTER - Dark Theme
+        ======================================== */
+        .footer {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            padding: 80px 0 0;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 60px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .footer-brand p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin: 20px 0 24px;
+            line-height: 1.7;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-link {
+            width: 44px;
+            height: 44px;
+            background: var(--bg-card);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            transition: var(--transition-base);
+            border: 1px solid var(--border-color);
+        }
+
+        .social-link:hover {
+            background: var(--primary-orange);
+            border-color: var(--primary-orange);
+        }
+
+        .footer-column h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+
+        .footer-column ul {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-column a {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .footer-column a:hover {
+            color: var(--primary-orange);
+        }
+
+        .footer-bottom {
+            padding: 24px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-bottom p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-legal a {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .footer-legal a:hover {
+            color: var(--primary-orange);
+        }
+
+        /* ========================================
+           MOBILE NAVIGATION - Dark Theme
+        ======================================== */
+        .mobile-nav {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--bg-primary);
+            padding: 24px;
+            transform: translateX(100%);
+            transition: var(--transition-base);
+            z-index: 999;
+        }
+
+        .mobile-nav.active {
+            transform: translateX(0);
+        }
+
+        .mobile-nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .mobile-nav-menu .nav-link {
+            font-size: 18px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+
+        /* ========================================
+           RESPONSIVE DESIGN
+        ======================================== */
+        @media (max-width: 1200px) {
+            .hero-title {
+                font-size: 48px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .footer-top {
+                grid-template-columns: 2fr 1fr 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .hero-inner {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content {
+                order: 1;
+            }
+
+            .hero-image {
+                order: 2;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .hero-description {
+                margin: 0 auto 40px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .business-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 32px;
+            }
+
+            .solutions-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-inner,
+            .contact-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-image-badge {
+                bottom: -20px;
+                right: 20px;
+            }
+
+            .footer-top {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --section-padding: 60px 0;
+            }
+
+            .header-cta .btn {
+                display: none;
+            }
+
+            .header-cta .btn-primary {
+                display: inline-flex;
+                padding: 10px 16px;
+                font-size: 14px;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 120px 0 60px;
+            }
+
+            .hero-title {
+                font-size: 36px;
+            }
+
+            .hero-description {
+                font-size: 16px;
+            }
+
+            .hero-stats {
+                flex-wrap: wrap;
+                gap: 24px;
+            }
+
+            .hero-stat {
+                flex: 1 0 40%;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .section-subtitle {
+                font-size: 16px;
+            }
+
+            .stat-number {
+                font-size: 40px;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 28px;
+            }
+
+            .business-grid,
+            .solutions-grid,
+            .projects-grid,
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+            }
+
+            .contact-form {
+                padding: 24px;
+            }
+        }
+
+        /* ========================================
+           ANIMATIONS
+        ======================================== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ========================================
+         HEADER
+    ======================================== -->
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="#" class="logo">
+                    <div class="logo-icon">AV</div>
+                    Auto<span>Viet</span>
+                </a>
+
+                <nav class="nav-menu">
+                    <a href="#about" class="nav-link">Giới Thiệu</a>
+                    <a href="#solutions" class="nav-link">Dịch Vụ</a>
+                    <a href="#products" class="nav-link">Sản Phẩm</a>
+                    <a href="#projects" class="nav-link">Dự Án</a>
+                    <a href="#partners" class="nav-link">Đối Tác</a>
+                    <a href="#contact" class="nav-link">Liên Hệ</a>
+                </nav>
+
+                <div class="header-cta">
+                    <a href="tel:0865771995" class="btn btn-outline">0865 771 995</a>
+                    <a href="#contact" class="btn btn-primary">Liên Hệ Ngay</a>
+                </div>
+
+                <button class="mobile-menu-btn" aria-label="Menu" onclick="toggleMobileNav()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" id="mobileNav">
+        <ul class="mobile-nav-menu">
+            <li><a href="#about" class="nav-link" onclick="closeMobileNav()">Giới Thiệu</a></li>
+            <li><a href="#solutions" class="nav-link" onclick="closeMobileNav()">Dịch Vụ</a></li>
+            <li><a href="#products" class="nav-link" onclick="closeMobileNav()">Sản Phẩm</a></li>
+            <li><a href="#projects" class="nav-link" onclick="closeMobileNav()">Dự Án</a></li>
+            <li><a href="#partners" class="nav-link" onclick="closeMobileNav()">Đối Tác</a></li>
+            <li><a href="#contact" class="nav-link" onclick="closeMobileNav()">Liên Hệ</a></li>
+        </ul>
+        <div style="margin-top: 24px;">
+            <a href="#contact" class="btn btn-primary" style="width: 100%;" onclick="closeMobileNav()">Liên Hệ Ngay</a>
+        </div>
+    </nav>
+
+    <!-- ========================================
+         HERO SECTION
+    ======================================== -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-inner">
+                <div class="hero-content">
+                    <div class="hero-badge">Số 1 Việt Nam</div>
+                    <h1 class="hero-title">
+                        Giải Pháp <span>Máy Bán Hàng Tự Động</span> Toàn Diện
+                    </h1>
+                    <p class="hero-description">
+                        AutoViet cung cấp dịch vụ bán, cho thuê, sửa chữa và bảo trì máy bán hàng tự động hàng đầu Việt Nam. Đối tác tin cậy của các doanh nghiệp lớn.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn-primary">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+                            </svg>
+                            Tư Vấn Miễn Phí
+                        </a>
+                        <a href="#products" class="btn btn-outline">Xem Sản Phẩm</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <div class="hero-stat-number">500+</div>
+                            <div class="hero-stat-label">Máy Bán Hàng</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-number">100+</div>
+                            <div class="hero-stat-label">Đối Tác</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-number">5+</div>
+                            <div class="hero-stat-label">Năm Kinh Nghiệm</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="hero-image-decoration"></div>
+                    <div class="hero-image-decoration"></div>
+                    <img src="../../images/pictures/header.jpg" alt="Máy bán hàng tự động AutoViet">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         BUSINESS TYPES SECTION
+    ======================================== -->
+    <section class="business-types" id="business">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Lĩnh Vực Phục Vụ</span>
+                <h2 class="section-title">Giải Pháp Cho Mọi Ngành Nghề</h2>
+                <p class="section-subtitle">
+                    AutoViet phục vụ đa dạng các lĩnh vực từ sản xuất, y tế đến giáo dục và thương mại
+                </p>
+            </div>
+            <div class="business-grid">
+                <div class="business-card reveal">
+                    <div class="business-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M2 20a2 2 0 002 2h16a2 2 0 002-2V8l-7 5V8l-7 5V4a2 2 0 00-2-2H4a2 2 0 00-2 2v16z"/>
+                        </svg>
+                    </div>
+                    <h3>Nhà Máy</h3>
+                    <p>Sản xuất & Công nghiệp</p>
+                </div>
+                <div class="business-card reveal">
+                    <div class="business-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 21h18M3 7v1a3 3 0 006 0V7m0 1a3 3 0 006 0V7m0 1a3 3 0 006 0V7H3l2-4h14l2 4M5 21V10.85M19 21V10.85"/>
+                        </svg>
+                    </div>
+                    <h3>Bệnh Viện</h3>
+                    <p>Y tế & Chăm sóc sức khỏe</p>
+                </div>
+                <div class="business-card reveal">
+                    <div class="business-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                            <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                        </svg>
+                    </div>
+                    <h3>Trường Học</h3>
+                    <p>Giáo dục & Đào tạo</p>
+                </div>
+                <div class="business-card reveal">
+                    <div class="business-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                            <path d="M16 7V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v3"/>
+                        </svg>
+                    </div>
+                    <h3>Văn Phòng</h3>
+                    <p>Doanh nghiệp & Cơ quan</p>
+                </div>
+                <div class="business-card reveal">
+                    <div class="business-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+                        </svg>
+                    </div>
+                    <h3>Khu Công Nghiệp</h3>
+                    <p>KCN & Khu Chế Xuất</p>
+                </div>
+                <div class="business-card reveal">
+                    <div class="business-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                            <polyline points="9,22 9,12 15,12 15,22"/>
+                        </svg>
+                    </div>
+                    <h3>Chung Cư</h3>
+                    <p>Khu dân cư & Tòa nhà</p>
+                </div>
+                <div class="business-card reveal">
+                    <div class="business-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8zM6 1v3M10 1v3M14 1v3"/>
+                        </svg>
+                    </div>
+                    <h3>Khách Sạn</h3>
+                    <p>Nhà hàng & Du lịch</p>
+                </div>
+                <div class="business-card reveal">
+                    <div class="business-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polygon points="16.24,7.76 14.12,14.12 7.76,16.24 9.88,9.88"/>
+                        </svg>
+                    </div>
+                    <h3>Trung Tâm TM</h3>
+                    <p>Bán lẻ & Siêu thị</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         STATISTICS BAR
+    ======================================== -->
+    <section class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item reveal">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Máy Bán Hàng</div>
+                </div>
+                <div class="stat-item reveal">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Đối Tác</div>
+                </div>
+                <div class="stat-item reveal">
+                    <div class="stat-number">5+</div>
+                    <div class="stat-label">Năm Kinh Nghiệm</div>
+                </div>
+                <div class="stat-item reveal">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Hỗ Trợ Kỹ Thuật</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         SOLUTIONS/SERVICES SECTION
+    ======================================== -->
+    <section class="solutions" id="solutions">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Dịch Vụ Của Chúng Tôi</span>
+                <h2 class="section-title">Giải Pháp Toàn Diện</h2>
+                <p class="section-subtitle">
+                    Từ bán máy, cho thuê đến bảo trì và sửa chữa - AutoViet đồng hành cùng bạn trên mọi hành trình
+                </p>
+            </div>
+            <div class="solutions-grid">
+                <div class="solution-card reveal">
+                    <div class="solution-image">
+                        <img src="https://images.unsplash.com/photo-1556740758-90de374c12ad?w=600&h=400&fit=crop" alt="Bán máy bán hàng tự động">
+                    </div>
+                    <div class="solution-content">
+                        <h3>Bán Máy</h3>
+                        <p>Cung cấp đa dạng máy bán hàng tự động từ các thương hiệu hàng đầu, phù hợp với mọi nhu cầu kinh doanh.</p>
+                        <a href="#contact" class="solution-link">
+                            Tìm hiểu thêm
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="solution-card reveal">
+                    <div class="solution-image">
+                        <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&h=400&fit=crop" alt="Cho thuê máy bán hàng tự động">
+                    </div>
+                    <div class="solution-content">
+                        <h3>Cho Thuê</h3>
+                        <p>Giải pháp cho thuê linh hoạt với chi phí tối ưu, không cần đầu tư ban đầu, bao gồm bảo trì định kỳ.</p>
+                        <a href="#contact" class="solution-link">
+                            Tìm hiểu thêm
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="solution-card reveal">
+                    <div class="solution-image">
+                        <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=600&h=400&fit=crop" alt="Sửa chữa máy bán hàng tự động">
+                    </div>
+                    <div class="solution-content">
+                        <h3>Sửa Chữa</h3>
+                        <p>Đội ngũ kỹ thuật viên chuyên nghiệp, sửa chữa nhanh chóng, đảm bảo máy hoạt động ổn định 24/7.</p>
+                        <a href="#contact" class="solution-link">
+                            Tìm hiểu thêm
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="solution-card reveal">
+                    <div class="solution-image">
+                        <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&h=400&fit=crop" alt="Bảo trì máy bán hàng tự động">
+                    </div>
+                    <div class="solution-content">
+                        <h3>Bảo Trì</h3>
+                        <p>Dịch vụ bảo trì định kỳ chuyên nghiệp, kéo dài tuổi thọ máy, giảm thiểu thời gian downtime.</p>
+                        <a href="#contact" class="solution-link">
+                            Tìm hiểu thêm
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         PRODUCTS SECTION
+    ======================================== -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Sản Phẩm</span>
+                <h2 class="section-title">Máy Bán Hàng Tự Động</h2>
+                <p class="section-subtitle">
+                    Đa dạng sản phẩm từ máy bán nước, thức ăn nhanh đến máy bán hàng tổng hợp
+                </p>
+            </div>
+            <div class="products-grid">
+                <div class="product-card reveal">
+                    <div class="product-image">
+                        <img src="../../images/ATV DLE 10C(22V).jpg" alt="ATV DLE 10C(22V)">
+                    </div>
+                    <div class="product-content">
+                        <h3>ATV DLE 10C (22V)</h3>
+                        <p>Máy bán hàng tự động</p>
+                    </div>
+                </div>
+                <div class="product-card reveal">
+                    <div class="product-image">
+                        <img src="../../images/ATV DLE 10G(5HP).jpg" alt="ATV DLE 10G(5HP)">
+                    </div>
+                    <div class="product-content">
+                        <h3>ATV DLE 10G (5HP)</h3>
+                        <p>Máy bán hàng tự động</p>
+                    </div>
+                </div>
+                <div class="product-card reveal">
+                    <div class="product-image">
+                        <img src="../../images/ATV LE200G.jpg" alt="ATV LE200G">
+                    </div>
+                    <div class="product-content">
+                        <h3>ATV LE200G</h3>
+                        <p>Máy bán hàng tự động</p>
+                    </div>
+                </div>
+                <div class="product-card reveal">
+                    <div class="product-image">
+                        <img src="../../images/ATV MC200.jpg" alt="ATV MC200">
+                    </div>
+                    <div class="product-content">
+                        <h3>ATV MC200</h3>
+                        <p>Máy bán hàng tự động</p>
+                    </div>
+                </div>
+                <div class="product-card reveal">
+                    <div class="product-image">
+                        <img src="../../images/ATV CSC 8G 5HP.jpg" alt="ATV CSC 8G 5HP">
+                    </div>
+                    <div class="product-content">
+                        <h3>ATV CSC 8G 5HP</h3>
+                        <p>Máy bán hàng tự động</p>
+                    </div>
+                </div>
+                <div class="product-card reveal">
+                    <div class="product-image">
+                        <img src="../../images/ATV CSC 6G 5HP.jpg" alt="ATV CSC 6G 5HP">
+                    </div>
+                    <div class="product-content">
+                        <h3>ATV CSC 6G 5HP</h3>
+                        <p>Máy bán hàng tự động</p>
+                    </div>
+                </div>
+                <div class="product-card reveal">
+                    <div class="product-image">
+                        <img src="../../images/ATV CSC 10G 5HP.jpg" alt="ATV CSC 10G 5HP">
+                    </div>
+                    <div class="product-content">
+                        <h3>ATV CSC 10G 5HP</h3>
+                        <p>Máy bán hàng tự động</p>
+                    </div>
+                </div>
+                <div class="product-card reveal">
+                    <div class="product-image">
+                        <img src="../../images/ATV CSC 10C(22V).jpg" alt="ATV CSC 10C(22V)">
+                    </div>
+                    <div class="product-content">
+                        <h3>ATV CSC 10C (22V)</h3>
+                        <p>Máy bán hàng tự động</p>
+                    </div>
+                </div>
+            </div>
+            <div class="load-more">
+                <a href="#contact" class="btn btn-outline">Liên Hệ Tư Vấn</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         PROJECTS/CASE STUDIES
+    ======================================== -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label" style="color: var(--primary-orange);">Dự Án Tiêu Biểu</span>
+                <h2 class="section-title">Các Dự Án Đã Triển Khai</h2>
+                <p class="section-subtitle">
+                    AutoViet tự hào đồng hành cùng hàng trăm doanh nghiệp trên khắp Việt Nam
+                </p>
+            </div>
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Projects will be loaded by JavaScript -->
+            </div>
+            <div class="projects-pagination">
+                <button class="pagination-btn" id="prevPage" disabled>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                    Trước
+                </button>
+                <div class="pagination-info">
+                    <span id="currentPage">1</span> / <span id="totalPages">5</span>
+                </div>
+                <button class="pagination-btn" id="nextPage">
+                    Sau
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 18l6-6-6-6"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         PARTNERS SECTION - Auto Scrolling Marquee
+    ======================================== -->
+    <section class="partners" id="partners">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Đối Tác</span>
+                <h2 class="section-title">Khách Hàng Tin Tưởng</h2>
+                <p class="section-subtitle">
+                    Các doanh nghiệp hàng đầu đã tin tưởng và sử dụng dịch vụ của AutoViet
+                </p>
+            </div>
+        </div>
+
+        <!-- Marquee Row 1 - Left to Right -->
+        <div class="marquee-container marquee-row">
+            <div class="marquee-track">
+                <div class="marquee-content">
+                    <div class="logo-item"><img src="../../images/partners/Luxshare-ICT-logo.png" alt="Luxshare ICT" style="transform: scale(1.4);"></div>
+                    <div class="logo-item"><img src="../../images/partners/samsung-electronc-logo.png" alt="Samsung"></div>
+                    <div class="logo-item"><img src="../../images/partners/m&c-logo.png" alt="M.C Electronic"></div>
+                    <div class="logo-item"><img src="../../images/partners/uil-logo.png" alt="UIL Việt Nam" style="transform: scale(1.4);"></div>
+                    <div class="logo-item"><img src="../../images/partners/Logo-Sonadezi-SNZ-V.webp" alt="Sonadezi"></div>
+                    <div class="logo-item"><img src="../../images/partners/tenma-logo.png" alt="Tenma"></div>
+                    <div class="logo-item"><img src="../../images/partners/inoac-logo.png" alt="Inoac" style="transform: scale(1.4);"></div>
+                    <div class="logo-item"><img src="../../images/partners/Toyota_logo_(Red).svg" alt="Toyota"></div>
+                    <div class="logo-item"><img src="../../images/partners/TAPDOANDAIDUONG-logo.png" alt="Tập Đoàn Đại Dương"></div>
+                    <div class="logo-item"><img src="../../images/partners/phucyen-logo.png" alt="BV Phúc Yên" style="transform: scale(1.4);"></div>
+                    <div class="logo-item"><img src="../../images/partners/huunghi-logo.png" alt="BV Hữu Nghị Việt Đức" style="transform: scale(1.4);"></div>
+                    <div class="logo-item"><img src="../../images/partners/ungbuu-logo.png" alt="BV Ung Bướu" style="transform: scale(1.4);"></div>
+                    <div class="logo-item"><img src="../../images/partners/logo-btls.png" alt="Bảo Tàng Lịch Sử VN"></div>
+                    <div class="logo-item"><img src="../../images/partners/keangnam-logo.png" alt="Keangnam Hà Nội" style="transform: scale(1.4);"></div>
+                    <div class="logo-item"><img src="../../images/partners/PVIHoldings-logo.png" alt="PVI Holdings"></div>
+                    <div class="logo-item"><img src="../../images/partners/trungtamhoinghi-logo.png" alt="TT Hội Nghị QG" style="transform: scale(1.4);"></div>
+                    <div class="logo-item"><img src="../../images/partners/huyhoang-logo.png" alt="Khóa Huy Hoàng" style="transform: scale(1.4);"></div>
+                    <div class="logo-item"><img src="../../images/partners/APD-logo.png" alt="APD"></div>
+                    <div class="logo-item"><img src="../../images/partners/KCNVIETNAM-logo.png" alt="KCN Việt Nam"></div>
+                </div>
+                <!-- Duplicate for seamless loop -->
+                <div class="marquee-content">
+                    <div class="logo-item"><img src="../../images/partners/Luxshare-ICT-logo.png" alt="Luxshare ICT" style="transform: scale(1.4);"></div>
+                    <div class="logo-item"><img src="../../images/partners/samsung-electronc-logo.png" alt="Samsung"></div>
+                    <div class="logo-item"><img src="../../images/partners/m&c-logo.png" alt="M.C Electronic"></div>
+                    <div class="logo-item"><img src="../../images/partners/uil-logo.png" alt="UIL Việt Nam" style="transform: scale(1.4);"></div>
+                    <div class="logo-item"><img src="../../images/partners/Logo-Sonadezi-SNZ-V.webp" alt="Sonadezi"></div>
+                    <div class="logo-item"><img src="../../images/partners/tenma-logo.png" alt="Tenma"></div>
+                    <div class="logo-item"><img src="../../images/partners/inoac-logo.png" alt="Inoac" style="transform: scale(1.4);"></div>
+                    <div class="logo-item"><img src="../../images/partners/Toyota_logo_(Red).svg" alt="Toyota"></div>
+                    <div class="logo-item"><img src="../../images/partners/TAPDOANDAIDUONG-logo.png" alt="Tập Đoàn Đại Dương"></div>
+                    <div class="logo-item"><img src="../../images/partners/phucyen-logo.png" alt="BV Phúc Yên" style="transform: scale(1.4);"></div>
+                    <div class="logo-item"><img src="../../images/partners/huunghi-logo.png" alt="BV Hữu Nghị Việt Đức" style="transform: scale(1.4);"></div>
+                    <div class="logo-item"><img src="../../images/partners/ungbuu-logo.png" alt="BV Ung Bướu" style="transform: scale(1.4);"></div>
+                    <div class="logo-item"><img src="../../images/partners/logo-btls.png" alt="Bảo Tàng Lịch Sử VN"></div>
+                    <div class="logo-item"><img src="../../images/partners/keangnam-logo.png" alt="Keangnam Hà Nội" style="transform: scale(1.4);"></div>
+                    <div class="logo-item"><img src="../../images/partners/PVIHoldings-logo.png" alt="PVI Holdings"></div>
+                    <div class="logo-item"><img src="../../images/partners/trungtamhoinghi-logo.png" alt="TT Hội Nghị QG" style="transform: scale(1.4);"></div>
+                    <div class="logo-item"><img src="../../images/partners/huyhoang-logo.png" alt="Khóa Huy Hoàng" style="transform: scale(1.4);"></div>
+                    <div class="logo-item"><img src="../../images/partners/APD-logo.png" alt="APD"></div>
+                    <div class="logo-item"><img src="../../images/partners/KCNVIETNAM-logo.png" alt="KCN Việt Nam"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Marquee Row 2 - Right to Left (Reverse) -->
+        <div class="marquee-container marquee-row">
+            <div class="marquee-track reverse">
+                <div class="marquee-content">
+                    <div class="logo-item"><img src="../../images/partners/termuno-logo.png" alt="Terumo"></div>
+                    <div class="logo-item"><img src="../../images/partners/Vietnam_Post_logo.png" alt="Vietnam Post"></div>
+                    <div class="logo-item"><img src="../../images/partners/logo_mitshubishi.png" alt="Mitsubishi"></div>
+                    <div class="logo-item"><img src="../../images/partners/matsuo-logo.png" alt="Matsuo"></div>
+                    <div class="logo-item"><img src="../../images/partners/fukang-logo.webp" alt="Fukang"></div>
+                    <div class="logo-item"><img src="../../images/partners/kyocera-logo.png" alt="Kyocera"></div>
+                    <div class="logo-item"><img src="../../images/partners/yazaki-logo.png" alt="Yazaki"></div>
+                    <div class="logo-item"><img src="../../images/partners/Logo-Shinetsu-260260-1.png" alt="Shin-Etsu"></div>
+                    <div class="logo-item"><img src="../../images/partners/Pegatron-Logo.wine.png" alt="Pegatron"></div>
+                    <div class="logo-item"><img src="../../images/partners/logo_nakajima.png" alt="Nakashima"></div>
+                    <div class="logo-item"><img src="../../images/partners/tkr-logo.png" alt="TKR"></div>
+                    <div class="logo-item"><img src="../../images/partners/sakurahoming-logo.png" alt="Sakura"></div>
+                    <div class="logo-item"><img src="../../images/partners/Logo-Cong-Ty-TNHH-Thep-Kyoei-Viet-Nam.png" alt="Kyoei"></div>
+                    <div class="logo-item"><img src="../../images/partners/thuongmai-logo.svg" alt="ĐH Thương Mại"></div>
+                    <div class="logo-item"><img src="../../images/partners/Logo_Trường_Đại_học_Sư_phạm_Hà_Nội_2.png" alt="ĐH Sư Phạm 2"></div>
+                    <div class="logo-item"><img src="../../images/partners/logo-gach-catalan.png" alt="Gạch Catalan"></div>
+                    <div class="logo-item"><img src="../../images/partners/TTC-logo.png" alt="Gạch TTC"></div>
+                </div>
+                <!-- Duplicate for seamless loop -->
+                <div class="marquee-content">
+                    <div class="logo-item"><img src="../../images/partners/termuno-logo.png" alt="Terumo"></div>
+                    <div class="logo-item"><img src="../../images/partners/Vietnam_Post_logo.png" alt="Vietnam Post"></div>
+                    <div class="logo-item"><img src="../../images/partners/logo_mitshubishi.png" alt="Mitsubishi"></div>
+                    <div class="logo-item"><img src="../../images/partners/matsuo-logo.png" alt="Matsuo"></div>
+                    <div class="logo-item"><img src="../../images/partners/fukang-logo.webp" alt="Fukang"></div>
+                    <div class="logo-item"><img src="../../images/partners/kyocera-logo.png" alt="Kyocera"></div>
+                    <div class="logo-item"><img src="../../images/partners/yazaki-logo.png" alt="Yazaki"></div>
+                    <div class="logo-item"><img src="../../images/partners/Logo-Shinetsu-260260-1.png" alt="Shin-Etsu"></div>
+                    <div class="logo-item"><img src="../../images/partners/Pegatron-Logo.wine.png" alt="Pegatron"></div>
+                    <div class="logo-item"><img src="../../images/partners/logo_nakajima.png" alt="Nakashima"></div>
+                    <div class="logo-item"><img src="../../images/partners/tkr-logo.png" alt="TKR"></div>
+                    <div class="logo-item"><img src="../../images/partners/sakurahoming-logo.png" alt="Sakura"></div>
+                    <div class="logo-item"><img src="../../images/partners/Logo-Cong-Ty-TNHH-Thep-Kyoei-Viet-Nam.png" alt="Kyoei"></div>
+                    <div class="logo-item"><img src="../../images/partners/thuongmai-logo.svg" alt="ĐH Thương Mại"></div>
+                    <div class="logo-item"><img src="../../images/partners/Logo_Trường_Đại_học_Sư_phạm_Hà_Nội_2.png" alt="ĐH Sư Phạm 2"></div>
+                    <div class="logo-item"><img src="../../images/partners/logo-gach-catalan.png" alt="Gạch Catalan"></div>
+                    <div class="logo-item"><img src="../../images/partners/TTC-logo.png" alt="Gạch TTC"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         SUPPLIERS SECTION - Gradient Cards
+    ======================================== -->
+    <section class="suppliers" id="suppliers">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Nhà Cung Cấp</span>
+                <h2 class="section-title">Đối Tác Cung Ứng</h2>
+                <p class="section-subtitle">
+                    Hợp tác với các thương hiệu hàng đầu để mang đến sản phẩm chất lượng nhất
+                </p>
+            </div>
+
+            <!-- Suppliers Grid - Gradient Cards -->
+            <div class="suppliers-grid reveal">
+                <div class="supplier-card"><span>Chí Vĩ</span></div>
+                <div class="supplier-card"><span>VHITEK</span></div>
+                <div class="supplier-card"><span>TCN</span></div>
+                <div class="supplier-card"><span>Xyngyuan</span></div>
+                <div class="supplier-card"><span>Baiden</span></div>
+                <div class="supplier-card"><span>Micron</span></div>
+                <div class="supplier-card"><span>L.E Vend</span></div>
+                <div class="supplier-card"><span>Coca-Cola</span></div>
+                <div class="supplier-card"><span>Pepsico</span></div>
+                <div class="supplier-card"><span>Tân Hiệp Phát</span></div>
+                <div class="supplier-card"><span>Masan</span></div>
+                <div class="supplier-card"><span>CP</span></div>
+                <div class="supplier-card"><span>NAVA</span></div>
+                <div class="supplier-card"><span>Vihamark</span></div>
+                <div class="supplier-card"><span>PTT Foods</span></div>
+                <div class="supplier-card"><span>Lof</span></div>
+                <div class="supplier-card"><span>Nestle</span></div>
+                <div class="supplier-card"><span>Ajinomoto</span></div>
+                <div class="supplier-card"><span>Kirin Wonderfarm</span></div>
+                <div class="supplier-card"><span>TCP Redbull</span></div>
+                <div class="supplier-card"><span>Taisho</span></div>
+                <div class="supplier-card"><span>Hà Lương</span></div>
+                <div class="supplier-card"><span>Quang Hanh</span></div>
+                <div class="supplier-card"><span>VNPAY</span></div>
+                <div class="supplier-card"><span>BaoKim</span></div>
+                <div class="supplier-card"><span>MoMo</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         ABOUT SECTION
+    ======================================== -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-inner">
+                <div class="about-image reveal">
+                    <img src="../../images/pictures/footer.jpg" alt="Đội ngũ AutoViet">
+                    <div class="about-image-badge">
+                        <div class="number">5+</div>
+                        <div class="text">Năm Kinh Nghiệm</div>
+                    </div>
+                </div>
+                <div class="about-content reveal">
+                    <span class="section-label">Về Chúng Tôi</span>
+                    <h2>Đồng Hành Cùng <span>Sự Phát Triển</span> Của Bạn</h2>
+                    <p>
+                        CÔNG TY TNHH DỊCH VỤ & CÔNG NGHỆ TỰ ĐỘNG VIỆT (AutoViet) là đơn vị hàng đầu trong lĩnh vực cung cấp giải pháp máy bán hàng tự động tại Việt Nam.
+                    </p>
+                    <p>
+                        Với hơn 5 năm kinh nghiệm, chúng tôi tự hào là đối tác tin cậy của hơn 100 doanh nghiệp lớn, từ các tập đoàn đa quốc gia đến các bệnh viện, trường học trên khắp cả nước.
+                    </p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <div class="about-feature-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                    <polyline points="22,4 12,14.01 9,11.01"/>
+                                </svg>
+                            </div>
+                            <span>Chất lượng đảm bảo</span>
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12,6 12,12 16,14"/>
+                                </svg>
+                            </div>
+                            <span>Hỗ trợ 24/7</span>
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                </svg>
+                            </div>
+                            <span>Bảo hành dài hạn</span>
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="1" x2="12" y2="23"/>
+                                    <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+                                </svg>
+                            </div>
+                            <span>Giá cả hợp lý</span>
+                        </div>
+                    </div>
+                    <a href="#contact" class="btn btn-primary">Liên Hệ Tư Vấn</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         CONTACT SECTION
+    ======================================== -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-inner">
+                <div class="contact-info reveal">
+                    <span class="section-label">Liên Hệ</span>
+                    <h2>Sẵn Sàng Hỗ Trợ Bạn</h2>
+                    <p>
+                        Hãy liên hệ với chúng tôi để được tư vấn miễn phí về giải pháp máy bán hàng tự động phù hợp nhất với doanh nghiệp của bạn.
+                    </p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-item-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+                                </svg>
+                            </div>
+                            <div class="contact-item-content">
+                                <h4>Điện Thoại</h4>
+                                <p>0865 771 995</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-item-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                    <polyline points="22,6 12,13 2,6"/>
+                                </svg>
+                            </div>
+                            <div class="contact-item-content">
+                                <h4>Email</h4>
+                                <p>contact@autoviet.vn</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-item-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                            </div>
+                            <div class="contact-item-content">
+                                <h4>Địa Chỉ</h4>
+                                <p>Số 10 ngõ Cây Đa 6, Thôn Lập Trí, Xã Minh Khai, Thành phố Hà Nội</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-item-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                                    <line x1="8" y1="21" x2="16" y2="21"/>
+                                    <line x1="12" y1="17" x2="12" y2="21"/>
+                                </svg>
+                            </div>
+                            <div class="contact-item-content">
+                                <h4>Mã Số Thuế</h4>
+                                <p>0111272009</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form reveal">
+                    <h3>Gửi Yêu Cầu Tư Vấn</h3>
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Họ và Tên *</label>
+                                <input type="text" id="name" name="name" required placeholder="Nhập họ tên">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Số Điện Thoại *</label>
+                                <input type="tel" id="phone" name="phone" required placeholder="Nhập số điện thoại">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="Nhập email">
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Tên Công Ty</label>
+                            <input type="text" id="company" name="company" placeholder="Nhập tên công ty">
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Dịch Vụ Quan Tâm</label>
+                            <select id="service" name="service">
+                                <option value="">-- Chọn dịch vụ --</option>
+                                <option value="buy">Mua máy bán hàng</option>
+                                <option value="rent">Thuê máy bán hàng</option>
+                                <option value="repair">Sửa chữa máy</option>
+                                <option value="maintenance">Bảo trì định kỳ</option>
+                                <option value="other">Khác</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Nội Dung</label>
+                            <textarea id="message" name="message" placeholder="Mô tả yêu cầu của bạn..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="22" y1="2" x2="11" y2="13"/>
+                                <polygon points="22,2 15,22 11,13 2,9"/>
+                            </svg>
+                            Gửi Yêu Cầu
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         FOOTER
+    ======================================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="#" class="logo" style="color: var(--text-primary);">
+                        <div class="logo-icon">AV</div>
+                        Auto<span>Viet</span>
+                    </a>
+                    <p>
+                        CÔNG TY TNHH DỊCH VỤ & CÔNG NGHỆ TỰ ĐỘNG VIỆT - Đơn vị hàng đầu về giải pháp máy bán hàng tự động tại Việt Nam.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/cong.tuyen.157562?locale=vi_VN" target="_blank" class="social-link" aria-label="Facebook">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+                            </svg>
+                        </a>
+                        <a href="https://zalo.me/0865771995" target="_blank" class="social-link" aria-label="Zalo">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <circle cx="12" cy="12" r="10"/>
+                                <text x="7" y="16" font-size="8" fill="#0a0a0a" font-weight="bold">Z</text>
+                            </svg>
+                        </a>
+                        <a href="https://m.me/cong.tuyen.157562" target="_blank" class="social-link" aria-label="Messenger">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.36 2 2 6.13 2 11.7c0 2.91 1.19 5.44 3.14 7.17.16.13.26.35.27.57l.05 1.78c.02.63.63 1.04 1.21.82l1.98-.78c.17-.07.36-.09.53-.05.86.23 1.81.36 2.82.36 5.64 0 10-4.13 10-9.7C22 6.13 17.64 2 12 2z"/>
+                                <path d="M7.5 13.5l2.9-4.5 1.5 1.5 2.6-1.5-2.9 4.5-1.5-1.5-2.6 1.5z" fill="#0a0a0a"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Dịch Vụ</h4>
+                    <ul>
+                        <li><a href="#solutions">Bán Máy</a></li>
+                        <li><a href="#solutions">Cho Thuê Máy</a></li>
+                        <li><a href="#solutions">Sửa Chữa</a></li>
+                        <li><a href="#solutions">Bảo Trì</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Sản Phẩm</h4>
+                    <ul>
+                        <li><a href="#products">Máy Bán Nước</a></li>
+                        <li><a href="#products">Máy Bán Snack</a></li>
+                        <li><a href="#products">Máy Bán Combo</a></li>
+                        <li><a href="#products">Máy Bán Thức Ăn</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Công Ty</h4>
+                    <ul>
+                        <li><a href="#about">Giới Thiệu</a></li>
+                        <li><a href="#projects">Dự Án</a></li>
+                        <li><a href="#partners">Đối Tác</a></li>
+                        <li><a href="#contact">Liên Hệ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Liên Hệ</h4>
+                    <ul>
+                        <li><a href="tel:0865771995">0865 771 995</a></li>
+                        <li><a href="mailto:contact@autoviet.vn">contact@autoviet.vn</a></li>
+                        <li><span style="color: var(--text-secondary);">MST: 0111272009</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>2024 AutoViet. Tất cả quyền được bảo lưu.</p>
+                <div class="footer-legal">
+                    <a href="#">Chính Sách Bảo Mật</a>
+                    <a href="#">Điều Khoản Sử Dụng</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================================
+         JAVASCRIPT
+    ======================================== -->
+    <script>
+        // Mobile Navigation Toggle
+        function toggleMobileNav() {
+            const mobileNav = document.getElementById('mobileNav');
+            mobileNav.classList.toggle('active');
+        }
+
+        function closeMobileNav() {
+            const mobileNav = document.getElementById('mobileNav');
+            mobileNav.classList.remove('active');
+        }
+
+        // Scroll Reveal Animation
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            const windowHeight = window.innerHeight;
+
+            reveals.forEach((reveal, index) => {
+                const revealTop = reveal.getBoundingClientRect().top;
+                const revealPoint = 150;
+
+                if (revealTop < windowHeight - revealPoint) {
+                    reveal.style.transitionDelay = `${(index % 4) * 0.1}s`;
+                    reveal.classList.add('active');
+                }
+            });
+        }
+
+        // Header Scroll Effect
+        function headerScrollEffect() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.4)';
+            } else {
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.3)';
+            }
+        }
+
+        // Smooth Scroll for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = document.querySelector('.header').offsetHeight;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Form Submission Handler
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+
+            // Simple validation
+            if (!data.name || !data.phone) {
+                alert('Vui lòng điền đầy đủ thông tin bắt buộc!');
+                return;
+            }
+
+            // Show success message (in real implementation, send to server)
+            alert('Cảm ơn bạn đã gửi yêu cầu! Chúng tôi sẽ liên hệ trong thời gian sớm nhất.');
+            this.reset();
+        });
+
+        // Counter Animation for Stats
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number, .hero-stat-number');
+
+            counters.forEach(counter => {
+                const text = counter.textContent;
+                const hasPlus = text.includes('+');
+                const hasSlash = text.includes('/');
+
+                if (hasSlash) return; // Skip "24/7" style numbers
+
+                const target = parseInt(text.replace(/\D/g, ''));
+                if (isNaN(target)) return;
+
+                let current = 0;
+                const increment = target / 50;
+                const suffix = hasPlus ? '+' : '';
+
+                const updateCounter = () => {
+                    if (current < target) {
+                        current += increment;
+                        counter.textContent = Math.ceil(current) + suffix;
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target + suffix;
+                    }
+                };
+
+                // Only animate when in viewport
+                const observer = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting) {
+                        updateCounter();
+                        observer.disconnect();
+                    }
+                });
+
+                observer.observe(counter);
+            });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            revealOnScroll();
+            animateCounters();
+        });
+
+        // Event Listeners
+        window.addEventListener('scroll', function() {
+            revealOnScroll();
+            headerScrollEffect();
+        });
+
+        // Close mobile nav on window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 1024) {
+                closeMobileNav();
+            }
+        });
+
+        // Product Zoom on Click
+        const productCards = document.querySelectorAll('.product-card');
+        let zoomOverlay = null;
+
+        // Create zoom overlay element
+        function createZoomOverlay() {
+            zoomOverlay = document.createElement('div');
+            zoomOverlay.className = 'product-zoom-overlay';
+            zoomOverlay.innerHTML = `
+                <div class="product-zoom-content">
+                    <img src="" alt="">
+                    <h3></h3>
+                    <p></p>
+                </div>
+                <span class="product-zoom-hint">Click để đóng</span>
+            `;
+            document.body.appendChild(zoomOverlay);
+
+            // Close on click
+            zoomOverlay.addEventListener('click', closeZoom);
+
+            // Close on Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeZoom();
+            });
+        }
+
+        function showZoom(card) {
+            if (!zoomOverlay) createZoomOverlay();
+
+            const img = card.querySelector('.product-image img');
+            const title = card.querySelector('.product-content h3');
+            const desc = card.querySelector('.product-content p');
+
+            zoomOverlay.querySelector('img').src = img.src;
+            zoomOverlay.querySelector('img').alt = img.alt;
+            zoomOverlay.querySelector('h3').textContent = title.textContent;
+            zoomOverlay.querySelector('p').textContent = desc.textContent;
+
+            zoomOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeZoom() {
+            if (zoomOverlay) {
+                zoomOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        productCards.forEach(card => {
+            card.style.cursor = 'pointer';
+            card.addEventListener('click', function() {
+                showZoom(card);
+            });
+        });
+
+        // Project Zoom on Click
+        let projectZoomOverlay = null;
+
+        function createProjectZoomOverlay() {
+            projectZoomOverlay = document.createElement('div');
+            projectZoomOverlay.className = 'project-zoom-overlay';
+            projectZoomOverlay.innerHTML = `
+                <div class="project-zoom-content">
+                    <img src="" alt="">
+                </div>
+                <span class="project-zoom-hint">Click để đóng</span>
+            `;
+            document.body.appendChild(projectZoomOverlay);
+
+            projectZoomOverlay.addEventListener('click', closeProjectZoom);
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeProjectZoom();
+            });
+        }
+
+        function showProjectZoom(imgSrc, index) {
+            if (!projectZoomOverlay) createProjectZoomOverlay();
+
+            projectZoomOverlay.querySelector('img').src = `../../images/trienkhai/${imgSrc}`;
+            projectZoomOverlay.querySelector('img').alt = `Dự án triển khai ${index}`;
+
+            projectZoomOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProjectZoom() {
+            if (projectZoomOverlay) {
+                projectZoomOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Projects Pagination
+        const projectImages = [
+            'trienkhai1.jpg', 'trienkhai2.jpg', 'trienkhai3.jpg', 'trienkhai4.jpg', 'trienkhai5.jpg',
+            'trienkhai6.jpg', 'trienkhai7.jpg', 'trienkhai8.jpg', 'trienkhai9.jpg', 'trienkhai10.jpg',
+            'trienkhai11.jpg', 'trienkhai12.jpg', 'trienkhai13.jpg', 'trienkhai15.jpg', 'trienkhai16.jpg',
+            'trienkhai17.jpg', 'trienkhai18.jpg', 'trienkhai19.jpg', 'trienkhai20.jpg', 'trienkhai21.jpg',
+            'trienkhai22.jpg', 'trienkhai23.jpg', 'trienkhai24.jpg', 'trienkhai26.jpg'
+        ];
+
+        const itemsPerPage = 6;
+        let currentProjectPage = 1;
+        const totalProjectPages = Math.ceil(projectImages.length / itemsPerPage);
+
+        const projectsGrid = document.getElementById('projectsGrid');
+        const prevPageBtn = document.getElementById('prevPage');
+        const nextPageBtn = document.getElementById('nextPage');
+        const currentPageSpan = document.getElementById('currentPage');
+        const totalPagesSpan = document.getElementById('totalPages');
+
+        function renderProjects(page) {
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageImages = projectImages.slice(start, end);
+
+            projectsGrid.innerHTML = '';
+
+            pageImages.forEach((img, index) => {
+                const card = document.createElement('div');
+                card.className = 'project-card';
+                card.style.animationDelay = `${index * 0.1}s`;
+                card.innerHTML = `
+                    <img src="../../images/trienkhai/${img}" alt="Dự án triển khai ${start + index + 1}">
+                `;
+                card.style.cursor = 'pointer';
+                card.addEventListener('click', () => showProjectZoom(img, start + index + 1));
+                projectsGrid.appendChild(card);
+            });
+
+            // Update pagination UI
+            currentPageSpan.textContent = page;
+            totalPagesSpan.textContent = totalProjectPages;
+            prevPageBtn.disabled = page === 1;
+            nextPageBtn.disabled = page === totalProjectPages;
+        }
+
+        prevPageBtn.addEventListener('click', () => {
+            if (currentProjectPage > 1) {
+                currentProjectPage--;
+                renderProjects(currentProjectPage);
+            }
+        });
+
+        nextPageBtn.addEventListener('click', () => {
+            if (currentProjectPage < totalProjectPages) {
+                currentProjectPage++;
+                renderProjects(currentProjectPage);
+            }
+        });
+
+        // Initial render
+        renderProjects(1);
+    </script>
+</body>
+</html>
