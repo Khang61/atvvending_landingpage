@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <style>
         /* ========================================
@@ -134,15 +135,16 @@
         .nav-menu {
             display: flex;
             align-items: center;
-            gap: 40px;
+            gap: 28px;
         }
 
         .nav-link {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 600;
             color: var(--text-secondary);
             position: relative;
             padding: 8px 0;
+            white-space: nowrap;
         }
 
         .nav-link::after {
@@ -167,7 +169,13 @@
         .header-cta {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 12px;
+        }
+
+        .header-cta .btn {
+            padding: 10px 18px;
+            font-size: 13px;
+            white-space: nowrap;
         }
 
         .btn {
@@ -602,6 +610,184 @@
 
         .solution-link:hover {
             gap: 12px;
+        }
+
+        /* ========================================
+           REVENUE SHARE SECTION - Dark Theme
+        ======================================== */
+        .revenue-share {
+            padding: var(--section-padding);
+            background: var(--bg-primary);
+        }
+
+        .revenue-share-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .revenue-share-content {
+            padding-right: 20px;
+        }
+
+        .revenue-share-content .section-label {
+            display: inline-block;
+            background: var(--primary-orange-light);
+            color: var(--primary-orange);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .revenue-share-content h2 {
+            font-size: 40px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .revenue-share-content > p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+
+        .revenue-share-list {
+            list-style: none;
+            margin-bottom: 32px;
+        }
+
+        .revenue-share-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 20px;
+            padding: 16px;
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            transition: var(--transition-base);
+        }
+
+        .revenue-share-list li:hover {
+            border-color: var(--primary-orange);
+            transform: translateX(8px);
+        }
+
+        .revenue-share-list li .icon {
+            width: 40px;
+            height: 40px;
+            min-width: 40px;
+            background: var(--primary-orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .revenue-share-list li .icon .material-icons {
+            font-size: 22px;
+            color: var(--text-primary);
+        }
+
+        .revenue-share-list li .text h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .revenue-share-list li .text p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .revenue-share-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .revenue-share-gallery .gallery-item {
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: var(--transition-base);
+        }
+
+        .revenue-share-gallery .gallery-item:hover {
+            border-color: var(--primary-orange);
+            transform: scale(1.03);
+        }
+
+        .revenue-share-gallery .gallery-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            transition: var(--transition-base);
+        }
+
+        .revenue-share-gallery .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .revenue-share-gallery .gallery-item.large {
+            grid-column: span 2;
+        }
+
+        .revenue-share-gallery .gallery-item.large img {
+            height: 220px;
+        }
+
+        .revenue-share-highlight {
+            background: linear-gradient(135deg, var(--primary-orange) 0%, #FF8533 100%);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            margin-top: 24px;
+        }
+
+        .revenue-share-highlight h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .revenue-share-highlight p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 992px) {
+            .revenue-share-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .revenue-share-content {
+                padding-right: 0;
+            }
+
+            .revenue-share-content h2 {
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .revenue-share-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .revenue-share-gallery .gallery-item.large {
+                grid-column: span 1;
+            }
         }
 
         /* ========================================
@@ -1787,6 +1973,7 @@
                 <nav class="nav-menu">
                     <a href="#about" class="nav-link">Giới Thiệu</a>
                     <a href="#solutions" class="nav-link">Dịch Vụ</a>
+                    <a href="#revenue-share" class="nav-link">Vận Hành</a>
                     <a href="#products" class="nav-link">Sản Phẩm</a>
                     <a href="#projects" class="nav-link">Dự Án</a>
                     <a href="#partners" class="nav-link">Đối Tác</a>
@@ -1812,6 +1999,7 @@
         <ul class="mobile-nav-menu">
             <li><a href="#about" class="nav-link" onclick="closeMobileNav()">Giới Thiệu</a></li>
             <li><a href="#solutions" class="nav-link" onclick="closeMobileNav()">Dịch Vụ</a></li>
+            <li><a href="#revenue-share" class="nav-link" onclick="closeMobileNav()">Vận Hành</a></li>
             <li><a href="#products" class="nav-link" onclick="closeMobileNav()">Sản Phẩm</a></li>
             <li><a href="#projects" class="nav-link" onclick="closeMobileNav()">Dự Án</a></li>
             <li><a href="#partners" class="nav-link" onclick="closeMobileNav()">Đối Tác</a></li>
@@ -2059,6 +2247,70 @@
                                 <path d="M5 12h14M12 5l7 7-7 7"/>
                             </svg>
                         </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         REVENUE SHARE SECTION - Vận Hành Chia Sẻ % Doanh Thu
+    ======================================== -->
+    <section class="revenue-share" id="revenue-share">
+        <div class="container">
+            <div class="revenue-share-inner">
+                <div class="revenue-share-content reveal">
+                    <span class="section-label">Hợp Tác Cùng Phát Triển</span>
+                    <h2>Vận Hành Máy Bán Hàng<br>Chia Sẻ % Doanh Thu</h2>
+
+                    <ul class="revenue-share-list">
+                        <li>
+                            <div class="icon">
+                                <span class="material-icons">local_shipping</span>
+                            </div>
+                            <div class="text">
+                                <h4>Vận Chuyển & Lắp Đặt Trọn Gói</h4>
+                                <p>Vận chuyển lắp đặt, vệ sinh định kỳ, bổ sung hàng hóa vào máy và bảo dưỡng thiết bị chuyên nghiệp.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon">
+                                <span class="material-icons">support_agent</span>
+                            </div>
+                            <div class="text">
+                                <h4>Hỗ Trợ Khách Hàng 24/7</h4>
+                                <p>Tư vấn và chăm sóc khách hàng qua tổng đài hỗ trợ tại Hà Nội và Sài Gòn, sẵn sàng giải quyết mọi vấn đề.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon">
+                                <span class="material-icons">inventory_2</span>
+                            </div>
+                            <div class="text">
+                                <h4>Sản Phẩm Đa Dạng & Chất Lượng</h4>
+                                <p>Cung cấp đa dạng sản phẩm: bánh kẹo, snack, hoa quả sấy, nước khoáng, nước có ga, nước trái cây 100% nguyên chất từ các thương hiệu uy tín.</p>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="revenue-share-highlight">
+                        <h4><span class="material-icons" style="vertical-align: middle; margin-right: 8px;">handshake</span>Nhà Phân Phối Chính Thức AutoViet</h4>
+                        <p>Đồng hành mỗi ngày cùng khách hàng với cam kết dịch vụ hậu mãi tốt nhất: Bảo hành - Linh kiện - Bảo dưỡng - Đào tạo - Vận chuyển - Tổng đài hỗ trợ 24/7.</p>
+                    </div>
+                </div>
+
+                <div class="revenue-share-gallery reveal">
+                    <div class="gallery-item">
+                        <img src="../../images/vanhanhmay/z7311311666052_ee788fef20d65672d47c7193699e5f75.jpg" alt="Vận hành máy bán hàng tự động AutoViet">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="../../images/vanhanhmay/z7311311677346_206ee05a12382d6d37ac2defe76419d6.jpg" alt="Lắp đặt máy bán hàng tự động">
+                    </div>
+                    <div class="gallery-item large">
+                        <img src="../../images/vanhanhmay/z7311311685847_e39edc819d904d72a65c9be522e496e3.jpg" alt="Bổ sung hàng hóa máy bán hàng tự động">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="../../images/vanhanhmay/z7311311689912_8d5df15f87005aec13e687f2ea514202.jpg" alt="Bảo dưỡng máy bán hàng tự động">
                     </div>
                 </div>
             </div>
@@ -2444,7 +2696,7 @@
                             </div>
                             <div class="contact-item-content">
                                 <h4>Email</h4>
-                                <p>contact@autoviet.vn</p>
+                                <p>autovietvending@gmail.com</p>
                             </div>
                         </div>
                         <div class="contact-item">
@@ -2587,16 +2839,9 @@
                     <h4>Liên Hệ</h4>
                     <ul>
                         <li><a href="tel:0865771995">0865 771 995</a></li>
-                        <li><a href="mailto:contact@autoviet.vn">contact@autoviet.vn</a></li>
+                        <li><a href="mailto:autovietvending@gmail.com">autovietvending@gmail.com</a></li>
                         <li><span style="color: var(--text-secondary);">MST: 0111272009</span></li>
                     </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>2024 AutoViet. Tất cả quyền được bảo lưu.</p>
-                <div class="footer-legal">
-                    <a href="#">Chính Sách Bảo Mật</a>
-                    <a href="#">Điều Khoản Sử Dụng</a>
                 </div>
             </div>
         </div>
@@ -2660,7 +2905,7 @@
             });
         });
 
-        // Form Submission Handler
+        // Form Submission Handler with EmailJS
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
@@ -2674,9 +2919,38 @@
                 return;
             }
 
-            // Show success message (in real implementation, send to server)
-            alert('Cảm ơn bạn đã gửi yêu cầu! Chúng tôi sẽ liên hệ trong thời gian sớm nhất.');
-            this.reset();
+            // Get submit button and show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="material-icons" style="animation: spin 1s linear infinite;">sync</span> Đang gửi...';
+            submitBtn.disabled = true;
+
+            // Prepare template parameters
+            const templateParams = {
+                from_name: data.name,
+                from_phone: data.phone,
+                from_email: data.email || 'Không cung cấp',
+                from_company: data.company || 'Không cung cấp',
+                service_type: data.service || 'Chưa chọn',
+                message: data.message || 'Không có nội dung',
+                to_email: 'autovietvending@gmail.com'
+            };
+
+            // Send email using EmailJS
+            emailjs.send('service_j5gucyh', 'tempplate_v8ihn6r', templateParams)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    alert('Cảm ơn bạn đã gửi yêu cầu! Chúng tôi sẽ liên hệ trong thời gian sớm nhất.');
+                    document.getElementById('contactForm').reset();
+                })
+                .catch(function(error) {
+                    console.log('FAILED...', error);
+                    alert('Có lỗi xảy ra khi gửi yêu cầu. Vui lòng thử lại hoặc liên hệ trực tiếp qua hotline.');
+                })
+                .finally(function() {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                });
         });
 
         // Counter Animation for Stats
@@ -2895,5 +3169,21 @@
         // Initial render
         renderProjects(1);
     </script>
+
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        // Initialize EmailJS
+        (function() {
+            emailjs.init('P3SYIlce9kdrhPUzy');
+        })();
+    </script>
+
+    <style>
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
 </body>
 </html>
